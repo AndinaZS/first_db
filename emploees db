@@ -1,0 +1,16 @@
+create table if not exists Departments(
+id serial primary key,
+title text not null
+);
+
+create table if not exists Employees(
+id serial primary key,
+name text not null,
+dep_id integer not null references Departments(id)
+);
+
+create table if not exists Chiefs(
+chief_id integer not null references Employees(id),
+dep_id integer not null references Departments(id),
+constraint pk primary key (chief_id, dep_id)
+);
